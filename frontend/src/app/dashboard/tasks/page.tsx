@@ -146,9 +146,9 @@ export default function TasksPage() {
   }
 
   return (
-    <div className="p-6 h-full flex flex-col">
+    <div className="p-4 sm:p-6 h-full flex flex-col">
       {/* Header */}
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
         <div>
           <h1 className="text-white text-2xl font-bold tracking-tight">Tasks</h1>
           <p className="text-zinc-500 text-sm mt-0.5">
@@ -168,11 +168,11 @@ export default function TasksPage() {
           <Loader2 size={28} className="text-blue-500 animate-spin" />
         </div>
       ) : (
-        <div className="grid grid-cols-3 gap-4 flex-1 min-h-0">
+        <div className="flex gap-4 flex-1 min-h-0 overflow-x-auto pb-1">
           {COLUMNS.map(({ key, label, icon, color }) => {
             const colTasks = tasks.filter((t) => t.status === key);
             return (
-              <div key={key} className="flex flex-col bg-[#0d0d0d] border border-white/[0.06] rounded-2xl overflow-hidden">
+              <div key={key} className="flex flex-col bg-[#0d0d0d] border border-white/[0.06] rounded-2xl overflow-hidden min-w-[280px] flex-1">
                 <div className="flex items-center justify-between p-4 border-b border-white/[0.05]">
                   <div className={`flex items-center gap-2 px-2.5 py-1 rounded-lg ${color}`}>
                     {icon}

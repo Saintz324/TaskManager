@@ -94,15 +94,15 @@ export default function SettingsPage() {
   }
 
   return (
-    <div className="p-6 max-w-4xl">
+    <div className="p-4 sm:p-6 max-w-4xl">
       <div className="mb-6">
         <h1 className="text-white text-2xl font-bold tracking-tight">Settings</h1>
         <p className="text-zinc-500 text-sm mt-0.5">Manage your account and preferences</p>
       </div>
 
-      <div className="grid grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
         {/* Left: Forms */}
-        <div className="col-span-2 space-y-4">
+        <div className="lg:col-span-2 space-y-4">
 
           {/* Profile */}
           <div className="bg-[#0d0d0d] border border-white/[0.06] rounded-2xl p-6">

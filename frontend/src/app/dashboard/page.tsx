@@ -101,39 +101,39 @@ export default function DashboardPage() {
     : [];
 
   return (
-    <div className="p-6 min-h-screen">
+    <div className="p-4 sm:p-6 min-h-screen">
       {/* Header */}
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
         <div>
-          <h1 className="text-white text-2xl font-bold tracking-tight">Dashboard</h1>
+          <h1 className="text-white text-xl sm:text-2xl font-bold tracking-tight">Dashboard</h1>
           <p className="text-zinc-500 text-sm mt-0.5">
             Welcome back, <span className="text-zinc-300">{user?.name ?? "there"}</span>
           </p>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2">
           <button
             onClick={() => loadStats(true)}
             className="flex items-center gap-2 px-3 py-2 rounded-xl border border-white/10 bg-white/5 text-zinc-400 hover:text-white hover:border-white/20 text-sm transition-all"
           >
             <RefreshCw size={14} className={refreshing ? "animate-spin" : ""} />
-            Refresh
+            <span className="hidden sm:inline">Refresh</span>
           </button>
           <Link
             href="/dashboard/projects"
-            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-sm font-semibold transition-all shadow-lg shadow-blue-900/30"
+            className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-sm font-semibold transition-all shadow-lg shadow-blue-900/30"
           >
-            <Plus size={14} /> New Project
+            <Plus size={14} /> <span className="hidden sm:inline">New Project</span>
           </Link>
         </div>
       </div>
 
       {/* Time Filters */}
-      <div className="flex items-center gap-2 mb-6">
+      <div className="flex items-center gap-1.5 mb-6 flex-wrap">
         {FILTERS.map((f) => (
           <button
             key={f}
             onClick={() => setActiveFilter(f)}
-            className={`px-4 py-1.5 rounded-lg text-sm font-medium transition-all ${
+            className={`px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-all ${
               activeFilter === f
                 ? "bg-white text-black"
                 : "text-zinc-400 hover:text-white hover:bg-white/5"
@@ -151,7 +151,7 @@ export default function DashboardPage() {
       ) : (
         <>
           {/* Metric Cards */}
-          <div className="grid grid-cols-2 xl:grid-cols-4 gap-4 mb-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mb-6">
             <StatCard
               label="Total Tasks"
               value={stats?.tasks.total ?? 0}
@@ -187,9 +187,9 @@ export default function DashboardPage() {
           </div>
 
           {/* Middle Row: Tasks Details + Activity Summary */}
-          <div className="grid grid-cols-3 gap-4 mb-6">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-6">
             {/* Tasks Details Table */}
-            <div className="col-span-2 bg-[#0d0d0d] border border-white/[0.06] rounded-2xl p-5">
+            <div className="lg:col-span-2 bg-[#0d0d0d] border border-white/[0.06] rounded-2xl p-5">
               <div className="flex items-center justify-between mb-5">
                 <div>
                   <h2 className="text-white font-semibold">Tasks Overview</h2>
@@ -295,7 +295,7 @@ export default function DashboardPage() {
             </div>
 
             {/* Big numbers */}
-            <div className="grid grid-cols-3 gap-4 mb-6">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
               {[
                 { label: "To Do", value: stats?.tasks.todo ?? 0, icon: Clock },
                 { label: "In Progress", value: stats?.tasks.in_progress ?? 0, icon: BarChart2 },

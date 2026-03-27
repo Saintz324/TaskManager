@@ -71,9 +71,9 @@ export default function ProjectsPage() {
     p.task_count > 0 ? Math.round((p.completed_count / p.task_count) * 100) : 0;
 
   return (
-    <div className="p-6">
+    <div className="p-4 sm:p-6">
       {/* Header */}
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
         <div>
           <h1 className="text-white text-2xl font-bold tracking-tight">Projects</h1>
           <p className="text-zinc-500 text-sm mt-0.5">{projects.length} project{projects.length !== 1 ? "s" : ""}</p>

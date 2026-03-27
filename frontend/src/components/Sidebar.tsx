@@ -4,21 +4,25 @@ import { usePathname } from "next/navigation";
 import {
   LayoutDashboard, FolderOpen, Users, Calendar,
   Settings, BarChart2, Clock, CheckSquare, LogOut,
-  ChevronRight
+  ChevronRight, X
 } from "lucide-react";
 import { logout, getUser } from "@/lib/auth";
 
 const NAV_ITEMS = [
-  { href: "/dashboard", icon: LayoutDashboard, label: "Dashboard", exact: true },
-  { href: "/dashboard/projects", icon: FolderOpen, label: "Projects" },
-  { href: "/dashboard/tasks", icon: CheckSquare, label: "Tasks" },
-  { href: "/dashboard/analytics", icon: BarChart2, label: "Analytics" },
-  { href: "/dashboard/team", icon: Users, label: "Team" },
-  { href: "/dashboard/calendar", icon: Calendar, label: "Calendar" },
-  { href: "/dashboard/schedules", icon: Clock, label: "Schedules" },
+  { href: "/dashboard",           icon: LayoutDashboard, label: "Dashboard", exact: true },
+  { href: "/dashboard/projects",  icon: FolderOpen,      label: "Projects" },
+  { href: "/dashboard/tasks",     icon: CheckSquare,     label: "Tasks" },
+  { href: "/dashboard/analytics", icon: BarChart2,       label: "Analytics" },
+  { href: "/dashboard/team",      icon: Users,           label: "Team" },
+  { href: "/dashboard/calendar",  icon: Calendar,        label: "Calendar" },
+  { href: "/dashboard/schedules", icon: Clock,           label: "Schedules" },
 ];
 
-export default function Sidebar() {
+interface SidebarProps {
+  onClose?: () => void;
+}
+
+export default function Sidebar({ onClose }: SidebarProps) {
   const pathname = usePathname();
   const user = getUser();
 
@@ -31,6 +35,10 @@ export default function Sidebar() {
     ? user.name.split(" ").map((n: string) => n[0]).slice(0, 2).join("").toUpperCase()
     : "U";
 
+  function handleNavClick() {
+    onClose?.();
+  }
+
   return (
     <aside className="w-[240px] min-w-[240px] bg-[#050505] border-r border-white/[0.05] h-full flex flex-col">
       {/* Logo */}
@@ -38,7 +46,16 @@ export default function Sidebar() {
         <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center shadow-lg shadow-blue-900/40">
           <CheckSquare size={14} className="text-white" />
         </div>
-        <span className="text-white font-bold text-base tracking-tight">TaskLab</span>
+        <span className="text-white font-bold text-base tracking-tight flex-1">TaskLab</span>
+        {/* Close button — mobile only */}
+        {onClose && (
+          <button
+            onClick={onClose}
+            className="lg:hidden w-7 h-7 rounded-lg flex items-center justify-center text-zinc-500 hover:text-white hover:bg-white/[0.06] transition-all"
+          >
+            <X size={16} />
+          </button>
+        )}
       </div>
 
       {/* Navigation */}
@@ -51,6 +68,7 @@ export default function Sidebar() {
               <Link
                 key={href}
                 href={href}
+                onClick={handleNavClick}
                 className={`group flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all relative ${
                   active
                     ? "bg-blue-600/15 text-white"
@@ -60,10 +78,7 @@ export default function Sidebar() {
                 {active && (
                   <div className="absolute left-0 top-1/2 -translate-y-1/2 w-0.5 h-5 bg-blue-500 rounded-full" />
                 )}
-                <Icon
-                  size={16}
-                  className={active ? "text-blue-400" : "group-hover:text-zinc-300 transition-colors"}
-                />
+                <Icon size={16} className={active ? "text-blue-400" : "group-hover:text-zinc-300 transition-colors"} />
                 <span className="text-sm font-medium flex-1">{label}</span>
                 {active && <ChevronRight size={12} className="text-blue-400/50" />}
               </Link>
@@ -75,6 +90,7 @@ export default function Sidebar() {
           <p className="text-zinc-600 text-[10px] font-semibold uppercase tracking-widest px-3 mb-2">General</p>
           <Link
             href="/dashboard/settings"
+            onClick={handleNavClick}
             className={`group flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all ${
               pathname === "/dashboard/settings"
                 ? "bg-blue-600/15 text-white"

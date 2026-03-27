@@ -118,9 +118,9 @@ export default function SchedulesPage() {
   const hasAnyTasksThisWeek = weekDays.some((d) => tasksForDay(d).length > 0);
 
   return (
-    <div className="p-6 h-full flex flex-col">
+    <div className="p-4 sm:p-6 h-full flex flex-col">
       {/* Header */}
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
         <div>
           <h1 className="text-white text-2xl font-bold tracking-tight">Schedules</h1>
           <p className="text-zinc-500 text-sm mt-0.5">
@@ -164,7 +164,8 @@ export default function SchedulesPage() {
       ) : (
         <div className="flex flex-col gap-4 flex-1 min-h-0">
           {/* Week Grid */}
-          <div className="grid grid-cols-7 gap-3 flex-1 min-h-0">
+          <div className="overflow-x-auto flex-1 min-h-0">
+          <div className="grid grid-cols-7 gap-3 h-full min-w-[560px]">
             {weekDays.map((day) => {
               const dayTasks = tasksForDay(day);
               const todayDay = isToday(day);
@@ -226,6 +227,7 @@ export default function SchedulesPage() {
                 </div>
               );
             })}
+          </div>
           </div>
 
           {/* Unscheduled Tasks */}

@@ -53,7 +53,7 @@ export default function AnalyticsPage() {
     : [];
 
   return (
-    <div className="p-6">
+    <div className="p-4 sm:p-6">
       <div className="mb-6">
         <h1 className="text-white text-2xl font-bold tracking-tight">Analytics</h1>
         <p className="text-zinc-500 text-sm mt-0.5">Track your team&apos;s performance and productivity</p>
@@ -66,7 +66,7 @@ export default function AnalyticsPage() {
       ) : (
         <>
           {/* Summary Cards */}
-          <div className="grid grid-cols-4 gap-4 mb-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
             {[
               { label: "Total Tasks", value: stats?.tasks.total ?? 0, icon: CheckCircle2, color: "text-blue-400 bg-blue-400/10" },
               { label: "Completed", value: stats?.tasks.completed ?? 0, icon: CheckCircle2, color: "text-emerald-400 bg-emerald-400/10" },
@@ -86,9 +86,9 @@ export default function AnalyticsPage() {
           </div>
 
           {/* Charts Row */}
-          <div className="grid grid-cols-3 gap-4 mb-6">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-6">
             {/* Monthly Activity */}
-            <div className="col-span-2 bg-[#0d0d0d] border border-white/[0.06] rounded-2xl p-5">
+            <div className="lg:col-span-2 bg-[#0d0d0d] border border-white/[0.06] rounded-2xl p-5">
               <h2 className="text-white font-semibold mb-1">Monthly Activity</h2>
               <p className="text-zinc-500 text-xs mb-5">Tasks created vs completed per month</p>
               <div className="h-52">
@@ -150,7 +150,7 @@ export default function AnalyticsPage() {
           </div>
 
           {/* Priority + Completion Rate */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="bg-[#0d0d0d] border border-white/[0.06] rounded-2xl p-5">
               <h2 className="text-white font-semibold mb-1">Priority Breakdown</h2>
               <p className="text-zinc-500 text-xs mb-5">Distribution of task priorities</p>
