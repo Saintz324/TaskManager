@@ -1,4 +1,4 @@
-const API = "http://localhost:3001/api";
+const API = process.env.NEXT_PUBLIC_API_URL + "/api";
 
 export function getToken() {
   if (typeof window === "undefined") return null;

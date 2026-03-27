@@ -1,4 +1,4 @@
-const API = "http://localhost:3001/api";
+const API = process.env.NEXT_PUBLIC_API_URL + "/api";
 
 async function apiFetch(path: string, options?: RequestInit) {
   const token = typeof window !== "undefined" ? localStorage.getItem("tasklab_token") : null;
