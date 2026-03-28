@@ -16,9 +16,9 @@ const API_URL = process.env.REACT_APP_API_URL;
 
 // index.ts
 const allowedOrigins = [
-  process.env.FRONTEND_URL || fetch(`${API_URL}/api/tasks`), 
-  "https://<SEU-FRONTEND-NAME>.vercel.app"
-];
+  "http://localhost:3000",
+  process.env.FRONTEND_URL, // set this in Render's environment variables
+].filter(Boolean) as string[];
 
 app.use(cors({
   origin: (origin, callback) => {

@@ -23,7 +23,8 @@ router.post("/register", async (req: Request, res: Response) => {
 
     const token = jwt.sign({ userId: id }, process.env.JWT_SECRET || "secret", { expiresIn: "7d" });
     res.status(201).json({ user: result.rows[0], token });
-  } catch (err) {
+  }  catch (err) {
+    console.error("REGISTER ERROR:", err); // ← adiciona isto
     res.status(500).json({ error: "Server error" });
   }
 });
